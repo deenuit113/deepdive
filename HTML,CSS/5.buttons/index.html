@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .a-button {
+            background-color: rgb(20, 40, 192);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            margin: 20px 10px 20px 30px;
+            padding: 20px 16px 20px 16px;
+            transition: opacity 0.3s ease, background-color 3s linear;
+        }
+        .a-button:hover{
+            opacity: 0.7;
+        }
+        .a-button:active{
+            opacity: 0.1;
+            background-color: black;
+        }
+
+        .parent p:first-child {
+            color: red;
+        }
+        .parent p:first-of-type {
+            color: blue;
+        }
+
+        li {
+            float: left;
+            margin-right: 30px;
+            font-size: 32px;
+            list-style: none;
+        }
+
+        li::after{
+            content: '|';
+            padding-left: 30px;
+        }
+
+        li:last-of-type::after{
+            content: '';
+        }
+        
+        li:first-of-type::before {
+            content: '시작';
+            margin-right: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <ul>
+        <li>A</li>
+        <li>B</li>
+        <li>C</li>
+    </ul>
+
+    <button class="a-button">ButtonA</button>
+    <button class="b-button">ButtonB</button>
+    <button class="c-button">ButtonC</button>
+    <div class="parent">
+        <span>A</span>
+        <p>B</p>
+        <p>C</p>
+    </div>
+</body>
+</html>
