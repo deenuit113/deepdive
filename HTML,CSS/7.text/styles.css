@@ -1,0 +1,10 @@
+.a-text {
+    font-family: 'Noto Sans Kr', sans-serif;
+    font-size: 40px;
+    font-weight: 900;
+    /* bold => 700, 보통 => 400, semi-bold => 500*/
+    font-style: italic;
+    line-height: 36px;
+
+    text-decoration: underline;
+}

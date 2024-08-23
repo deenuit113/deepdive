@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #example1 {
+            border: 10px dotted black;
+            padding: 15px;
+            background-color: lightcoral;
+            background-clip: border-box;
+        }
+        
+        #example2 {
+            border: 10px dotted black;
+            padding: 15px;
+            background-color: lightcoral;
+            background-clip: padding-box;
+        }
+
+        #example3 {
+            border: 10px dotted black;
+            padding: 15px;
+            background-color: lightcoral;
+            background-clip: content-box;
+        }
+    </style>
+</head>
+<body>
+    <p>background-clip: border-box</p>
+    <div id="example1">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus nihil, nemo laudantium tempore saepe libero qui repellendus id nobis ad ab corrupti voluptatibus, veritatis quis quo dolores. Iste, quod doloremque?</p>
+    </div>
+
+    <p>background-clip: padding-box</p>
+    <div id="example2">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus nihil, nemo laudantium tempore saepe libero qui repellendus id nobis ad ab corrupti voluptatibus, veritatis quis quo dolores. Iste, quod doloremque?</p>
+    </div>
+
+    <p>background-clip: content-box</p>
+    <div id="example3">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus nihil, nemo laudantium tempore saepe libero qui repellendus id nobis ad ab corrupti voluptatibus, veritatis quis quo dolores. Iste, quod doloremque?</p>
+    </div>
+    
+</body>
+</html>

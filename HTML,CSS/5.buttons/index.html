@@ -15,15 +15,58 @@
             padding: 20px 16px 20px 16px;
             transition: opacity 0.3s ease, background-color 3s linear;
         }
-        .a-button:hover{
+        .a-button:hover {
             opacity: 0.7;
         }
-        .a-button:active{
+        .a-button:active {
             opacity: 0.1;
             background-color: black;
         }
 
-        .parent p:first-child {
+        .b-button {
+            background-color: white;
+            border-color: rgb(212, 6, 64);
+            border-style: solid;
+            border-width: 1px;
+            color: rgb(6, 95, 212);
+            border-radius: 2px;
+            cursor: pointer;
+            padding: 9px 16px 9px 16px;
+            transition: background-color 0.15s, color 0.15s;
+        }
+
+        .b-button:hover {
+            background-color: rgb(6, 95, 212);
+            color: white;
+        }
+
+        .b-button:active {
+            opacity: 0.7;
+        }
+
+        .c-button {
+            background-color: rgb(25, 69, 98);
+            color: white;
+            border: none;
+            height: 36px;
+            width: 74px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+            margin-left: 8px;
+        }
+
+        .c-button:hover {
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 15);
+        }
+
+        .c-button:active {
+
+        }
+
+
+        /* .parent p:first-child {
             color: red;
         }
         .parent p:first-of-type {
@@ -49,24 +92,24 @@
         li:first-of-type::before {
             content: '시작';
             margin-right: 20px;
-        }
+        } */
 
     </style>
 </head>
 <body>
-    <ul>
+    <!-- <ul>
         <li>A</li>
         <li>B</li>
         <li>C</li>
-    </ul>
+    </ul> -->
 
     <button class="a-button">ButtonA</button>
     <button class="b-button">ButtonB</button>
     <button class="c-button">ButtonC</button>
-    <div class="parent">
+    <!-- <div class="parent">
         <span>A</span>
         <p>B</p>
         <p>C</p>
-    </div>
+    </div> -->
 </body>
 </html>
