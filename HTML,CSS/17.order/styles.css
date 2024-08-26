@@ -1,0 +1,37 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    border: 3px solid black;
+    height: 800px;
+    width: 500px;
+    align-items: flex-end;
+}
+
+.flex-item {
+    color: black;
+    font-size: 2rem;
+    padding: 1rem;
+    text-align: center;
+    width: 100px;
+    height: 100px;
+}
+
+.item-1 {
+    background-color: red;
+}
+.item-2 {
+    background-color: blue;
+    order: 1;
+}
+.item-3 {
+    background-color: green;
+}
+.item-4 {
+    background-color: yellow;
+}
+.item-5 {
+    background-color: orange;
+}
+.item-6 {
+    background-color: navy;
+}

@@ -1,0 +1,38 @@
+.box-container {
+    width: 200px;
+    height: 200px;
+    border: 2px solid #669966;
+}
+
+.box-container div{
+    padding: 10px;
+    border: 1px solid green;
+    background-color: #ffdddd;
+}
+
+#static-box {
+    position: static;
+    top: 20px;
+}
+
+#relative-box {
+    position: relative;
+    top: 20px;
+    left: 30px;
+}
+
+#absolute-box {
+    position: absolute;
+    top: 20px;
+    left: 30px;
+}
+
+#fixed-box {
+    position: fixed;
+    top: 20px;
+    left: 30px;
+}
+
+#sticky-box {
+    position: sticky;
+}
