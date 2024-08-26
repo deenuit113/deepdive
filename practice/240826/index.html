@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        .navbar-brand {
+            font-weight: bolder;
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            padding: 10px;
+            margin: 10px 20px;
+            border: 2px solid lightgrey;
+            box-shadow: 0 10px 16px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 18rem;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.7);
+        }
+        
+        .card-maker {
+          padding: 10px;
+          margin: 10px 20px;
+          border: 2px solid lightgrey;
+          border-radius: 5px;
+          box-shadow: 0 10px 16px rgba(0, 0, 0, 0.5);
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          width: 18rem;
+          order: 1;
+        }
+        
+        .card-img-top {
+            width: auto;
+            height: 200px;
+        }
+
+        .card-title {
+            font-weight: bolder;
+            margin-bottom: 10px;
+        }
+
+        .form-label {
+          font-weight: bold;
+        }
+
+        .btn-primary {
+            background-color: #113355;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #225588;
+        }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" role="navigation">
+        <a class="navbar-brand" href="#">Card Blog</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">menu 1</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">menu 2</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#">disabled menu</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      
+      <div class="main-content">
+          <!-- 기존 카드들 -->
+          <div class="card">
+              <img class="card-img-top" src="./img.png" alt="Card 1 IMG">
+              <div class="card-body">
+                  <h5 class="card-title">Card 1</h5>
+                  <p class="card-text">카드 1 내용입니다.</p>
+                  <button class="btn btn-primary like-btn" role="button">좋아요</button>
+                  <span>♥</span><span class="likes-count">0</span>
+              </div>
+          </div>
+
+          <div class="card">
+              <img class="card-img-top" src="./img2.png" alt="Card 2 IMG">
+              <div class="card-body">
+                  <h5 class="card-title">Card 2</h5>
+                  <p class="card-text">카드 2 내용입니다.</p>
+                  <button class="btn btn-primary like-btn" role="button">좋아요</button>
+                  <span>♥</span><span class="likes-count">0</span>
+              </div>
+          </div>
+
+          <!-- 카드 생성 컨테이너 -->
+          <div class="card-maker">
+              <div class="card-body">
+                  <h5 class="card-title">새 글 작성</h5>
+                  <div class="mb-3">
+                      <label for="newCardTitle" class="form-label">제목</label>
+                      <input type="text" class="form-control" id="newCardTitle" placeholder="제목 입력">
+                  </div>
+                  <div class="mb-3">
+                      <label for="newCardText" class="form-label">내용</label>
+                      <textarea class="form-control" id="newCardText" rows="3" placeholder="내용 입력"></textarea>
+                  </div>
+                  <div class="mb-3">
+                      <label for="newCardImage" class="form-label">이미지 업로드</label>
+                      <input type="file" class="form-control" id="newCardImage" accept="image/*">
+                  </div>
+                  <button class="btn btn-primary" id="createCardBtn" role="button">확인</button>
+              </div>
+          </div>
+      </div>
+
+      <script>
+          document.querySelectorAll('.like-btn').forEach(button => {
+              button.addEventListener('click', function() {
+                  const likesCountSpan = this.nextElementSibling.nextElementSibling;
+                  let likesCount = parseInt(likesCountSpan.textContent);
+                  likesCountSpan.textContent = likesCount + 1;
+              });
+          });
+
+          document.getElementById('createCardBtn').addEventListener('click', function() {
+              const title = document.getElementById('newCardTitle').value;
+              const text = document.getElementById('newCardText').value;
+              const imageInput = document.getElementById('newCardImage');
+              const imageFile = imageInput.files[0];
+
+              if (title && text && imageFile) {
+                  const reader = new FileReader();
+                  reader.onload = function(e) {
+                      const newCardHtml = `
+                          <div class="card">
+                              <img class="card-img-top" src="${e.target.result}" alt="New Card IMG">
+                              <div class="card-body">
+                                  <h5 class="card-title">${title}</h5>
+                                  <p class="card-text">${text}</p>
+                                  <button class="btn btn-primary like-btn" role="button">좋아요</button>
+                                  <span>♥</span><span class="likes-count">0</span>
+                              </div>
+                          </div>
+                      `;
+
+                      const newCardElement = document.createElement('div');
+                      newCardElement.innerHTML = newCardHtml;
+                      document.querySelector('.main-content').appendChild(newCardElement.firstElementChild);
+
+                      // 새로 생성된 카드에 좋아요 이벤트 리스너 추가
+                      newCardElement.querySelector('.like-btn').addEventListener('click', function() {
+                          const likesCountSpan = this.nextElementSibling.nextElementSibling;
+                          let likesCount = parseInt(likesCountSpan.textContent);
+                          likesCountSpan.textContent = likesCount + 1;
+                      });
+                  };
+                  reader.readAsDataURL(imageFile);
+
+                  // 입력 필드 초기화
+                  document.getElementById('newCardTitle').value = '';
+                  document.getElementById('newCardText').value = '';
+                  document.getElementById('newCardImage').value = '';
+              } else {
+                  alert('제목, 내용, 이미지를 모두 입력해주세요.');
+              }
+          });
+      </script>
+      
+</body>
+</html>
