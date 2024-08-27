@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            font-family: sans-serif;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 20px;
+        }
+        th {
+            background-color: lightgray;
+            color: black;
+            font-weight: 700;
+        }
+        tr {
+            background-color: white;
+            color: black;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+        tr:hover {
+            background-color: green;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>이름</th>
+                <th>성별</th>
+                <th>국적</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>이종혁</td>
+                <td>남</td>
+                <td>한국</td>
+            </tr>
+            <tr>
+                <td>아무개</td>
+                <td>여</td>
+                <td>미국</td>
+            </tr>
+            <tr>
+                <td>아무개</td>
+                <td>남</td>
+                <td>일본</td>
+            </tr>
+            <tr>
+                <td>아무개</td>
+                <td>님</td>
+                <td>태국</td>
+            </tr>
+    </table>
+</body>
+</html>
