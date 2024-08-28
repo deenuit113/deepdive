@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        button {
+            background-color: blue;
+            border: none;
+            font-size: 1rem;
+        }
+        div {
+            background-color: lightgray;
+            /* display: initial;block */
+            font-size: 3rem;
+            border: 1px solid black; 
+            /* inherited no */
+        }
+        /* 커스텀 스타일 => 브라우저 스타일 => initial 스타일 */
+    </style>
+</head>
+
+inherit yes > unset > inherit
+color, font-family
+revert 브라우저 특정 스타일로 다시 재설정 가능
+
+
+<body>
+    <button>button</button>
+    <div>div
+        <p>p</p>
+    </div>
+</body>
+</html>
