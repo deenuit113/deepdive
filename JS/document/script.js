@@ -32,3 +32,36 @@ Container.innerText = 'text';
 Container.innerHTML = '<span>Inner Html</span>';
 
 const Container2 = document.querySelector('.container2');
+
+// const items = document.getElementsByClassName('list-group-item');
+// console.log(items);
+// items[0].style.color = 'blue';
+// items[3].textContent = 'Hi';
+
+let list = document.getElementsByTagName('li'); // 배열 아님
+
+list = Array.from(list)
+
+const items = documents.querySelectorAll('ul.list-group li.list-group-item');
+
+items.forEach(function(item, index){
+    item.textContent = `${index}. List`
+})
+
+const liOdd =
+document.querySelectorAll('li:nth-child(odd)');
+const liEven =
+document.querySelectorAll('li:nth-child(even)');
+
+liOdd.forEach(function(item, index){
+    item.style.backgroundColor = 'lightgray';
+})
+
+for (let i = 0; i < liEven.length; i++){
+    liEven[i].style.backgroundColor = 'lightblue';
+}
+
+
+
+
+
