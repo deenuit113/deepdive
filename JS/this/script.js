@@ -32,3 +32,31 @@ function Audio(title) {
 }
 
 const audio1 = new Audio('a');
+
+const audio2 = {
+    title: 'audio',
+    categories: ['rock', 'pop', 'hiphop'],
+    displayCategories() {
+        this.categories.forEach(category => {
+            console.log(`title: ${this.title},
+                category: ${category}
+             `);
+        });
+    }
+};
+
+audio2.displayCategories();
+
+const audio3 = {
+    title: 'audio',
+    categories: ['rock', 'pop', 'hiphop'],
+    displayCategories() {
+        this.categories.forEach(category => {
+            console.log(this);
+        });
+    }
+};
+// 화살표 함수 안의 this는 항상 상위 스코프의 this를 참조
+// lexical this
+
+audio3.displayCategories();
