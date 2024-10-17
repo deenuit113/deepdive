@@ -1,6 +1,6 @@
 import ExpenseItem from "./ExpenseItem"
 
-export const ExpenseList = ({ initialExpenses, handleDelete, handleEdit }) => {
+export const ExpenseList = ({ initialExpenses, handleDelete, handleEdit, clearItems }) => {
     return (
         <>
             <ul>
@@ -15,7 +15,7 @@ export const ExpenseList = ({ initialExpenses, handleDelete, handleEdit }) => {
                     ))
                 }
             </ul>
-            <button>목록지우기</button>
+            <button onClick={clearItems}>목록지우기</button>
         </>
 
     )

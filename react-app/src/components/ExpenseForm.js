@@ -1,4 +1,4 @@
-export const ExpenseForm = ({ charge, amount, handleCharge, handleAmount, handleSubmit }) => {
+export const ExpenseForm = ({ charge, amount, isEditing, handleCharge, handleAmount, handleSubmit }) => {
     return (
         <form onSubmit={handleSubmit}>
             <div>
@@ -32,7 +32,7 @@ export const ExpenseForm = ({ charge, amount, handleCharge, handleAmount, handle
             <button 
                 type="submit"
             >
-                제출
+                {isEditing ? "수정" : "제출"}
             </button>
         </form>
     )
