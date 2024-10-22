@@ -2,35 +2,56 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
 const Nav = () => {
+
     const [show, setShow] = useState(false);
 
     const listener = () => {
-        if(window.scrollY > 50) {
+        if (window.scrollY > 50) {
             setShow(true);
         } else {
             setShow(false);
         }
     }
 
-    useEffect(()=>{
-        window.addEventListener("scroll", listener);
-        return () => {
-            window.removeEventListener("scroll", listener);
+    useEffect(() => {
+        window.addEventListener('scroll', listener);
 
+        return () => {
+            window.removeEventListener('scroll', listener);
         }
-    },[]);
+    }, [])
+
+
 
     return (
         <NavWrapper $show={show}>
             <Logo>
                 <img
-                    alt="Disney plus logo"
-                    src="/images/logo.svg"
+                    alt='Disney plus logo'
+                    src='/images/logo.svg'
                 />
             </Logo>
+
+
+            <Input />
+
+
+
         </NavWrapper>
     )
 }
+
+const Input = styled.input`
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, 0);
+    background-color: rgba(0,0,0,0.582);
+    color: white;
+    padding: 5px;
+    border: 1px solid lightgray;
+`
+
+
 
 const NavWrapper = styled.nav`
     position: fixed;
@@ -38,7 +59,7 @@ const NavWrapper = styled.nav`
     left: 0;
     right: 0;
     height: 70px;
-    background-color: ${props => props.$show ? "#090b13" : "transparent"}
+    background-color: ${props => props.$show ? "#090b13" : "transparent"};
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -53,10 +74,13 @@ const Logo = styled.a`
     margin-top: 4px;
     max-height: 70px;
     display: inline-block;
+
     img {
         display: block;
         width: 100%;
     }
+
 `
 
 export default Nav
+
