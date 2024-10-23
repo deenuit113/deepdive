@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import { useNavigate } from'react-router-dom';
 
 const Nav = () => {
 
     const [show, setShow] = useState(false);
+    const [searchValue, setSearchValue] = useState('');
+    const navigate = useNavigate();
 
     const listener = () => {
         if (window.scrollY > 50) {
@@ -21,7 +24,10 @@ const Nav = () => {
         }
     }, [])
 
-
+    const handleChange = (e) => {
+        setSearchValue(e.target.value);
+        navigate(`/search?q=${e.target.value}`);
+    };
 
     return (
         <NavWrapper $show={show}>
@@ -33,7 +39,13 @@ const Nav = () => {
             </Logo>
 
 
-            <Input />
+            <Input
+                value={searchValue}
+                onChange={handleChange}
+                className='nav__input'
+                placeholder='영화를 검색해주세요.'
+
+            />
 
 
 
@@ -50,8 +62,6 @@ const Input = styled.input`
     padding: 5px;
     border: 1px solid lightgray;
 `
-
-
 
 const NavWrapper = styled.nav`
     position: fixed;
