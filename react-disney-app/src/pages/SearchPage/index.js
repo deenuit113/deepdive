@@ -59,8 +59,8 @@ const SearchPage = () => {
         )
     } else {
         return (
-            <section>
-                <div>
+            <section className="no-results">
+                <div className="no-results__text">
                     <p>
                         찾고자 하는 검색어 "{searchTerm}"에 맞은 영화가 없습니다."
                     </p>
