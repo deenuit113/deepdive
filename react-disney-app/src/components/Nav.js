@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useNavigate, useLocation } from'react-router-dom';
+import { GoogleAuthProvider, signInWithPopup, getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
+import app from '../firebase';
 
 const Nav = () => {
 
@@ -8,6 +10,9 @@ const Nav = () => {
     const [searchValue, setSearchValue] = useState('');
     const { pathname } = useLocation();
     const navigate = useNavigate();
+    const provider = new GoogleAuthProvider();
+    const auth = getAuth(app);
+    const [userData, setUserData] = useState(null);
 
     const listener = () => {
         if (window.scrollY > 50) {
@@ -30,8 +35,41 @@ const Nav = () => {
         navigate(`/search?q=${e.target.value}`);
     };
 
-    const handleAuth = () => {
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (!user) { // 로그아웃
+                navigate("/");
+            } else if (user && pathname === "/") { // 로그인
+                navigate("/main");
+            }
+        })
 
+        return () => unsubscribe();
+    },[auth, navigate, pathname])
+
+    const handleAuth = () => {
+        signInWithPopup(auth, provider)
+        .then((result) => {
+            setUserData({
+                id: result.user.uid,
+                email: result.user.email,
+                displayName: result.user.displayName,
+                photoUrl: result.user.photoURL,
+            });
+            console.log(result);
+        })
+        .catch((error) => {
+            console.error(error);
+        })
+    }
+
+    const handleLogOut = () => {
+        signOut(auth)
+        .then(() => {
+            setUserData(null);
+        }).catch((error) => {
+            console.log(error);
+        })
     }
 
     return (
@@ -53,6 +91,13 @@ const Nav = () => {
                         placeholder='영화를 검색해주세요.'
                     />
                     <SignOut>
+                        <UserImg
+                            src={userData?.photoUrl}
+                            alt={userData?.displayName}
+                        />
+                        <DropDown>
+                            <span onClick={handleLogOut}>Sign Out</span>
+                        </DropDown>
                     </SignOut>
                 </>
             }
@@ -92,9 +137,12 @@ const SignOut = styled.div`
 `
 
 const UserImg = styled.img`
+    width: 100%;
     height: 100%;
     border-radius: 50%;
 `
+
+
 
 const Login = styled.a`
     background-color: rgba(0,0,0,0.6);
