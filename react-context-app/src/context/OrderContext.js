@@ -1,8 +1,20 @@
 import { createContext, useState, useMemo, useEffect } from "react";
 
+
+const pricePerItem = {
+    products: 1000,
+    options: 500,
+}
+
+function calculateSubTotal(orderType, orderCounts) {
+    let optionCount = 0;
+    for(const count of orderCounts[orderType].values()){
+        optionCount += count;
+    }
+    return optionCount * pricePerItem[orderType];
+}
+
 export const OrderContext = createContext();
-
-
 
 export function OrderContextProvider(props) {
 
@@ -18,7 +30,14 @@ export function OrderContextProvider(props) {
     });
 
     useEffect(() => {
-
+        const productsTotal = calculateSubTotal("products", orderCounts);
+        const optionsTotal = calculateSubTotal("options", orderCounts);
+        const total = productsTotal + optionsTotal;
+        setTotals({
+            products: productsTotal,
+            options: optionsTotal,
+            totals: total,
+        });
     },[orderCounts]);
 
     const value = useMemo(() => {
@@ -37,8 +56,8 @@ export function OrderContextProvider(props) {
         }
 
 
-        return [{ ...orderCounts }, updateItemCount]
-    }, [orderCounts])
+        return [{ ...orderCounts, totals }, updateItemCount]
+    }, [orderCounts, totals])
 
 
     return <OrderContext.Provider value={value} {...props}/>
