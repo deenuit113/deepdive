@@ -7,7 +7,7 @@ const Footer = () => {
     <footer className={styles.footer}>
       <div className='container'>
         <div className={styles.contacts}>
-          <a>
+          <a href="https://github.com">
             <BsGithub />
           </a>
         </div>

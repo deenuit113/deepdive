@@ -7,7 +7,6 @@ const CategoryTab = ({ text, categoryName }) => {
 
   const dispatch = useDispatch();
   const category = useSelector((state) => state.categories);
-  console.log(category === categoryName);
 
   const getActiveCategory = () => {
     dispatch(setActiveCategory(categoryName));
