@@ -27,8 +27,6 @@ const Navbar = () => {
   )
 }
 
-export default Navbar
-
 const StyledNav = styled.nav`
     width: 100%;
     height: 88px;
@@ -69,3 +67,6 @@ const Container = styled.div`
         margin-top: 7px;
     }
 `
+
+export default Navbar
+

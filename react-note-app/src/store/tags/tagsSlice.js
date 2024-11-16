@@ -12,7 +12,19 @@ const initialState = {
 const tagsSlice = createSlice({
     name: "tags",
     initialState,
-    reducer: {}
+    reducer: {
+        addTags: (state, { payload }) => {
+            if(state.tagsList.find(({ tag }) => tag === payload.tag)) {
+                
+            } else {
+                state.tagsList.push(payload);
+            }
+        },
+        deleteTags: (state, { payload }) => {
+            state.tagsList = state.tagsList.filter(({ id }) => id !== payload);
+        },
+    }
 })
 
+export const { addTags, deleteTags } = tagsSlice.actions;
 export default tagsSlice.reducer;

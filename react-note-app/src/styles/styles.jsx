@@ -16,7 +16,7 @@ export const ButtonFill = styled.button`
     padding: 6px 20px;
     border-radius: 5px;
     cursor: pointer;
-    box-shadow: 0px 1px 1px 1px rbga(0, 0, 0, 0.1);
+    box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.1);
     transition: 250ms background-color ease-in-out;
     span {
         font-weight: 500;
@@ -27,7 +27,7 @@ export const ButtonFill = styled.button`
     border: 1px solid var(--primary-color);
 
     &:hover {
-        background-color: var(--primary-color-hover);
+        background-color: var(253, 239, 195, 0.5);
     }
 
     @media (max-width: 600px) {

@@ -7,11 +7,14 @@ import ErrorPage from './pages/ErrorPage/ErrorPage'
 import Sidebar from './layout/Sidebar/Sidebar'
 import Navbar from './layout/Navbar/Navbar'
 import './App.css'
+import TagsModal from './components/Modal/TagsModal/TagsModal'
+import { useSelector } from 'react-redux'
 
 function App() {
-
+  const { viewEditTagsModal } = useSelector(state => state.modal);
   return (
     <div className="app">
+      {viewEditTagsModal && <TagsModal type="edit"/> }
       <BrowserRouter>
         <Sidebar/>
         <div className='app__container'>
