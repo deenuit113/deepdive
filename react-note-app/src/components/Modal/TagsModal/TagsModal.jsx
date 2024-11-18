@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { DeleteBox, FixedContainer } from '../modal.styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleTagsModal } from '../../../store/modal/modalSlice';
@@ -25,6 +25,10 @@ const TagsModal = ({ type }) => {
         dispatch(deleteTags(id));
         dispatch(removeTags(tag));
     }
+
+    useEffect(() => {
+        console.log("TagsModal is rendered");
+    }, []);
 
     return (
         <FixedContainer>

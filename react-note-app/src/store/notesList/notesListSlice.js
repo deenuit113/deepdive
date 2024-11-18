@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit"
+import notes from "../../notesData";
 
 const initialState = {
-    mainNotes: [],
+    mainNotes: [...notes],
     archiveNotes: [],
     trashNotes: [],
     editNote: null

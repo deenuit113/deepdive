@@ -71,7 +71,9 @@ const Sidebar = () => {
                     {/* Edit Notes */}
                     <li
                         className='sidebar__edit-item'
-                        onClick={() => dispatch(toggleTagsModal({ type: 'edit', view: true }))}
+                        onClick={() =>   //'add' | 'edit'   // 'true' | 'false'
+                            dispatch(toggleTagsModal({ type: 'edit', view: true }))
+                        }
                     > 
                         <span>
                             <FaPencilAlt/>

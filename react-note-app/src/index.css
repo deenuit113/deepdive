@@ -13,3 +13,23 @@ a {
     text-decoration: none;
     color: black;
 }
+
+[data-info] {
+    position: relative;
+}
+
+[data-info]:hover::after {
+    content: attr(data-info);
+    position: absolute;
+    z-index: 5;
+    right: -15px;
+    top: 20px;
+    border: none;
+    font-size: 12.5px;
+    font-weight: 500;
+    padding: 2px 6px;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 1);
+    color: rgba(0,0,0,0.7);
+    box-shadow: 0px 0px 3px rgba(0,0,0,0.2);
+}
