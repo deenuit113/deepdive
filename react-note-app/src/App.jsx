@@ -11,9 +11,10 @@ import TagsModal from './components/Modal/TagsModal/TagsModal'
 import { useSelector } from 'react-redux'
 import { ToastContainer } from "react-toastify";
 import "react-toastify/ReactToastify.css"
+import CreateNoteModal from './components/Modal/CreateNoteModal/CreateNoteModal'
 
 function App() {
-    const { viewEditTagsModal } = useSelector(state => state.modal);
+    const { viewEditTagsModal, viewCreateNoteModal } = useSelector(state => state.modal);
     return (
         <div className="app">
             <ToastContainer
@@ -22,6 +23,7 @@ function App() {
                 theme="light"
                 position='bottom-right'
             />
+            {viewCreateNoteModal && <CreateNoteModal/> }
             {viewEditTagsModal && <TagsModal type="edit"/> }
             <BrowserRouter>
                 <Sidebar/>
