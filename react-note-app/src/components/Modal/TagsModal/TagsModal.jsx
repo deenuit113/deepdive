@@ -4,12 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toggleTagsModal } from '../../../store/modal/modalSlice';
 import styled from 'styled-components';
 import getStandardName from '../../../utils/getStandardName';
-import { FaTimes } from 'react-icons/fa';
+import { FaMinus, FaPlus, FaTimes } from 'react-icons/fa';
 import { addTags, deleteTags } from '../../../store/tags/tagsSlice';
 import { v4 } from "uuid";
 import { removeTags } from '../../../store/notesList/notesListSlice';
 
-const TagsModal = ({ type }) => {
+const TagsModal = ({ type, addedTag, handleTags }) => {
     const dispatch = useDispatch();
     const { tagsList } = useSelector(state => state.tags);
     const [inputText, setInputText] = useState("");
@@ -57,9 +57,27 @@ const TagsModal = ({ type }) => {
                             tagsList.map(({ tag, id}) => (
                                 <li key={id}>
                                     <div className='editTags__tag'>{getStandardName(tag)}</div>
-                                    <DeleteBox onClick={() => handleDeleteClick(tag, id)}>
-                                        <FaTimes/>
-                                    </DeleteBox>
+
+                                    {
+                                        type === 'edit' ? (
+                                            <DeleteBox onClick={() => handleDeleteClick(tag, id)}>
+                                                <FaTimes/>
+                                            </DeleteBox>
+                                        ) : (
+                                            <DeleteBox>
+                                                {
+                                                    addedTag?.find(
+                                                        (tagItem) => tagItem.tag === tag.toLowerCase()
+                                                    ) ? (
+                                                        <FaMinus onClick={() => handleTags(tag, "remove")}/>
+                                                    ) : (
+                                                        <FaPlus onClick={() => handleTags(tag, "add")}/>
+                                                    )
+                                                }
+                                            </DeleteBox>
+                                        )
+                                    }
+
                                 </li>
                             ))
                         }

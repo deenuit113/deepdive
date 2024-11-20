@@ -4,7 +4,7 @@ const notes = [
     {
         title: 'Note 1 title',
         content: 'Note 1 content',
-        tags: [{ tag: 'exercise', id: v4() }],
+        tags: [],
         color: '#cceoff',
         priority: 'high',
         isPinned: true,
@@ -17,7 +17,7 @@ const notes = [
     {
         title: 'Note 2 title',
         content: 'Note 2 content',
-        tags: [{ tag: 'coding', id: v4() }],
+        tags: [],
         color: '#ffcccc',
         priority: 'high',
         isPinned: true,
