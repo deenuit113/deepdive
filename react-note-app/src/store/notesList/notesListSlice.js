@@ -12,6 +12,15 @@ const notesListSlice = createSlice({
     name: "notesList",
     initialState,
     reducers: {
+        setMainNotes: (state, { payload }) => {
+            if(state.mainNotes.find(({ id }) => id === payload.id)) {
+                state.mainNotes = state.mainNotes.map((note) =>
+                    note.id === payload.id ? payload : note
+                );
+            } else {
+                state.mainNotes.push(payload);
+            }
+        },
         setArchiveNotes: (state, { payload }) => {
             state.mainNotes = state.mainNotes.filter(({ id }) => id !== payload.id);
             state.archiveNotes.push({...payload, isPinned: false});
@@ -64,6 +73,7 @@ const notesListSlice = createSlice({
 })
 
 export const {
+    setMainNotes,
     setArchiveNotes,
     unArchiveNote,
     setTrashNotes,
@@ -72,5 +82,6 @@ export const {
     removeTags,
     setEditNote,
     setPinnedNotes,
+    readNote,
 } = notesListSlice.actions;
 export default notesListSlice.reducer;

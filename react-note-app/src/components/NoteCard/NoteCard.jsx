@@ -4,54 +4,72 @@ import { NotesIconBox } from '../../styles/styles';
 import { BsFillPinFill } from 'react-icons/bs';
 import getRelevantBtns from '../../utils/getRelevantBtns';
 import { useDispatch } from 'react-redux';
-import { setPinnedNotes } from '../../store/notesList/notesListSlice';
+import { readNote, setPinnedNotes } from '../../store/notesList/notesListSlice';
+import parse from 'html-react-parser';
+import ReadNoteModal from '../Modal/ReadNoteModal/ReadNoteModal';
+
 
 const NoteCard = ({ note, type }) => {
     const { title, content, tags, color, priority, date, isPinned, isRead, id } = note;
+    
+    const func = () => {
+        const imgContent = content.includes('img');
+        if(imgContent) {
+            return content;
+        } else {
+            return content.length > 75 ? content.slice(0, 75) + "..." : content;
+        }
+    }
+
     const dispatch = useDispatch();
     return (
-        <Card>
-            <TopBox>
-                <div className='noteCard__title'>
-                    {title.length > 10 ? title.slice(0, 10) + " ..." : title}
-                </div>
-                <div className='noteCard__top-options'>
-                    <span className='noteCard__priority'>
-                        {priority}
-                    </span>
+        <>
+            {
+                isRead && <ReadNoteModal note={note} type={type}/>
+            }
+            <Card style={{backgroundColor: color}}>
+                <TopBox>
+                    <div className='noteCard__title'>
+                        {title.length > 10 ? title.slice(0, 10) + " ..." : title}
+                    </div>
+                    <div className='noteCard__top-options'>
+                        <span className='noteCard__priority'>
+                            {priority}
+                        </span>
+                        {
+                            type !== "archive" && type !== "trash" && (
+                                <NotesIconBox
+                                    className="noteCard__pin"
+                                    onClick={() => dispatch(setPinnedNotes({ id }))}
+                                >
+                                    <BsFillPinFill
+                                        style={{ color: isPinned ? "red": "lightgrey" }}
+                                    />
+                                </NotesIconBox>
+                            )
+                        }
+                    </div>
+                </TopBox>
+                <ContentBox onClick={() => dispatch(readNote({ type, id }))}>
+                    {parse(func())}
+                </ContentBox>
+                <TagsBox>
                     {
-                        type !== "archive" && type !== "trash" && (
-                            <NotesIconBox
-                                className="noteCard__pin"
-                                onClick={() => dispatch(setPinnedNotes({ id }))}
-                            >
-                                <BsFillPinFill
-                                    style={{ color: isPinned ? "red": "lightgrey" }}
-                                />
-                            </NotesIconBox>
-                        )
+                        tags?.map(({tag, id}) => (
+                            <span key={id}>{tag}</span>
+                        ))
                     }
-                </div>
-            </TopBox>
-            <ContentBox>
-                {content}
-            </ContentBox>
-            <TagsBox>
-                {
-                    tags?.map(({tag, id}) => (
-                        <span key={id}>{tag}</span>
-                    ))
-                }
-            </TagsBox>
-            <FooterBox>
-                <div className='noteCard__date'>
-                    {date}
-                </div>
-                <div>
-                    {getRelevantBtns( type, note, dispatch)}
-                </div>
-            </FooterBox>
-        </Card>
+                </TagsBox>
+                <FooterBox>
+                    <div className='noteCard__date'>
+                        {date}
+                    </div>
+                    <div>
+                        {getRelevantBtns( type, note, dispatch)}
+                    </div>
+                </FooterBox>
+            </Card>
+        </>
     )
 }
 
@@ -79,7 +97,7 @@ const ContentBox = styled.div`
     width: 100%;
     height: 65px;
     margin: 15px 0 10px;
-    font-size: 14px;
+    font-size: 9px;
     cursor: pointer;
     overflow-y: hidden;
 

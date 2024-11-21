@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { FaPlus, FaTimes } from 'react-icons/fa';
 import { ButtonFill, ButtonOutline } from '../../../styles/styles';
 import { toggleCreateNoteModal, toggleTagsModal } from '../../../store/modal/modalSlice';
-import { setEditNote } from '../../../store/notesList/notesListSlice';
+import { setEditNote, setMainNotes } from '../../../store/notesList/notesListSlice';
 import TagsModal from '../TagsModal/TagsModal';
 import { v4 } from 'uuid';
 import TextEditor from '../../TextEditor/TextEditor';
@@ -45,32 +45,36 @@ const CreateNoteModal = () => {
         } else if(value === "<p><br></p>") {
             toast.error("내용을 넣어주세요.");
         }
-    }
-
-    let note = {
-        title: noteTitle,
-        content: value,
-        tags: addedTag,
-        color: noteColor,
-        priority: priority,
-        editedTime: new Date().getTime()
-    }
-
-    const date = dayjs().format("DD/MM/YY h:mm A");
-
-    if(editNote) {
-        note = { ...editNote, ...note }
-    } else {
-        note = {
-            ...note,
-            isPinned: false,
-            isRead: false,
-            editedTime: null,
-            id: v4(),
-            createdTime: new Date().getTime(),
-            date,
+        let note = {
+            title: noteTitle,
+            content: value,
+            tags: addedTag,
+            color: noteColor,
+            priority: priority,
+            editedTime: new Date().getTime()
         }
+    
+        const date = dayjs().format("DD/MM/YY h:mm A");
+    
+        if(editNote) {
+            note = { ...editNote, ...note }
+        } else {
+            note = {
+                ...note,
+                isPinned: false,
+                isRead: false,
+                editedTime: null,
+                id: v4(),
+                createdTime: new Date().getTime(),
+                date,
+            }
+        }
+        dispatch(setMainNotes(note));
+        dispatch(toggleCreateNoteModal(false));
+        dispatch(setEditNote(null));
     }
+
+    
 
     return (
         <FixedContainer>

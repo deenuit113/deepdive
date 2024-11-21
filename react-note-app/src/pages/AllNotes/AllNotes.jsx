@@ -4,14 +4,24 @@ import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { toggleFiltersModal } from '../../store/modal/modalSlice'
 import getAllNotes from '../../utils/getAllNotes'
+import FiltersModal from '../../components/Modal/FiltersModal/FiltersModal'
 
 const AllNotes = () => {
     const { mainNotes } = useSelector(state => state.notesList);
     const [searchInput, setSearchInput] = useState('');
     const dispatch = useDispatch();
     const [filter, setFilter] = useState('');
+    const { viewFiltersModal } = useSelector(state => state.modal);
     return (
         <Container> 
+            {
+                viewFiltersModal && (
+                    <FiltersModal
+                    
+                    />
+                )
+ 
+            }
             {
                 mainNotes.length === 0 ? (
                     <EmptyMsgBox>
@@ -28,7 +38,7 @@ const AllNotes = () => {
                                     onChange={e=> setSearchInput(e.target.value)}
                                 />
                             </InputBox>
-                            <div className='notes__filter_btn'>
+                            <div className='notes__filter-btn'>
                                 <ButtonOutline
                                     className='nav__btn'
                                     onClick={()=> setSearchInput(() => dispatch(toggleFiltersModal(true)))}
@@ -48,8 +58,8 @@ const AllNotes = () => {
 }
 
 const TopBox = styled.div`
-    margin-right:25px;
-    .note__filter-btn {
+    margin-right: 25px;
+    .notes__filter-btn {
         display: flex;
         justify-content: flex-end;
     }
