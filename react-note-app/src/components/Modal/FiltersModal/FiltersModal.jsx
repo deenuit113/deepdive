@@ -5,7 +5,7 @@ import { FaTimes } from 'react-icons/fa'
 import { useDispatch } from 'react-redux'
 import { toggleFiltersModal } from '../../../store/modal/modalSlice'
 
-const FiltersModal = () => {
+const FiltersModal = ({ handleFilter, filter, handleClear }) => {
 
     const dispatch = useDispatch();
     return (
@@ -25,6 +25,7 @@ const FiltersModal = () => {
                     >정렬</div>
                     <small
                         className='filters__delete'
+                        onClick={handleClear}
                     >
                         Clear
                     </small>
@@ -34,19 +35,23 @@ const FiltersModal = () => {
                     <div className='filters__subtitle'>PRIORITY</div>
                     <div className='filters__check'>
                         <input
+                            onChange={handleFilter}
                             type='radio'
                             name='filter'
                             value='low'
                             id='low'
+                            checked={filter === 'low'}
                         />
                         <label htmlFor='low'>Low to High</label>
                     </div>
                     <div className='filters__check'>
                         <input
+                            onChange={handleFilter}
                             type='radio'
                             name='filter'
                             value='high'
                             id='high'
+                            checked={filter === 'high'}
                         />
                         <label htmlFor='high'>High to Low</label>
                     </div>
@@ -54,28 +59,34 @@ const FiltersModal = () => {
                     <div className='filters__subtitle'>DATE</div>
                     <div className='filters__check'>
                         <input
+                            onChange={handleFilter}
                             type='radio'
                             name='filter'
                             value='latest'
                             id='latest'
+                            checked={filter === 'latest'}
                         />
                         <label htmlFor='new'>Sort by Latest</label>
                     </div>
                     <div className='filters__check'>
                         <input
+                            onChange={handleFilter}
                             type='radio'
                             name='filter'
                             value='created'
                             id='created'
+                            checked={filter === 'created'}
                         />
                         <label htmlFor='create'>Sort by Created</label>
                     </div>
                     <div className='filters__check'>
                         <input
+                            onChange={handleFilter}
                             type='radio'
                             name='filter'
                             value='edited'
                             id='edited'
+                            checked={filter === 'edited'}
                         />
                         <label htmlFor='edit'>Sort by Edited</label>
                     </div>

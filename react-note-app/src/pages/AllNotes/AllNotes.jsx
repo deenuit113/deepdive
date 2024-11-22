@@ -10,14 +10,24 @@ const AllNotes = () => {
     const { mainNotes } = useSelector(state => state.notesList);
     const [searchInput, setSearchInput] = useState('');
     const dispatch = useDispatch();
-    const [filter, setFilter] = useState('');
+    const [filter, setFilter] = useState('low');
     const { viewFiltersModal } = useSelector(state => state.modal);
+
+    const handleFilter = (e) => {
+        setFilter(e.target.value);
+    }
+
+    const handleClear = () => {
+        setFilter('')
+    }
     return (
         <Container> 
             {
                 viewFiltersModal && (
                     <FiltersModal
-                    
+                        filter={filter}
+                        handleFilter={handleFilter}
+                        handleClear={handleClear}
                     />
                 )
  

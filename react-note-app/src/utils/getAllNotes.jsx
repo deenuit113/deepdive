@@ -2,16 +2,21 @@ import NoteCard from "../components/NoteCard/NoteCard";
 import { NotesContainer } from "../styles/styles";
 
 const filteredNotes = (notes, filter) => {
+    const lowPriority = notes.filter(({ priority }) => priority === "low");
+    const highPriority = notes.filter(({ priority }) => priority === "high");
     if(filter === "low") {
-        return 
+        return [...lowPriority, ...highPriority];
     } else if (filter === "high") {
-        return
+        return [...highPriority, ...lowPriority];
     } else if (filter === "latest") {
-        return
+        return notes.sort((a, b) => b.createdTime - a.createdTime);
     } else if (filter === "created") {
-        return
+        return notes.sort((a, b) => a.createdTime - b.createdTime);
     } else if (filter === "edited") {
-        return
+        const editedNotes = notes.filter(({ editedTime }) => editedTime);
+        const normalNotes = notes.filter(({ editedTime }) => !editedTime);
+        const sortEdited = editedNotes.sort((a, b) => b.editedTime - a.editedTime);
+        return [...sortEdited,...normalNotes];
     } else {
         return notes;
     }
@@ -98,25 +103,6 @@ const getAllNotes = (mainNotes, filter) => {
             </>
         )
     }
-
-    return (
-        <>
-            <div className="allNotes__notes-type">
-                All Notes
-            </div>
-            <NotesContainer>
-                {
-                    mainNotes.map((note) => (
-                        <NoteCard 
-                            key={note.id} 
-                            note={note} 
-                            type="notes"  // | "archive" | "trash"
-                        />
-                    ))
-                }
-            </NotesContainer>
-        </>
-    )
 }
 
 export default getAllNotes;
