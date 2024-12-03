@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+// css framework               styled component scss tailwind 
 module.exports = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",

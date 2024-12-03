@@ -1,10 +1,9 @@
-import Image from "next/image";
-import localFont from "next/font/local";
+import { getSortedPostsData } from "@/utils/getSortedPostsData";
 import Head from "next/head";
+import Link from "next/link";
 
-export default function Home() {
-
-    
+export default function Home({ allPostsData }) {
+    console.log(allPostsData);
     return (
         <div>
             <Head>
@@ -12,14 +11,38 @@ export default function Home() {
             </Head>
             <section>
                 <p>[Your Self Introduction]</p>
-                <p>(This is a website)</p>
+                <p>
+                (This is a website)
+                </p>
             </section>
             <section>
-                <h2>blog</h2>
+                <h2>Blog</h2>
                 <ul>
-                    build time
+                {
+                    allPostsData.map(({ id, date, title }) => (
+                    <li key={id}>
+                        <Link href={`/posts/${id}`}>
+                        {title}
+                        </Link>
+                        <br />
+                        <small>
+                        {date}
+                        </small>
+                    </li>
+                    ))
+                }
                 </ul>
             </section>
         </div>
     );
+}
+
+export const getStaticProps = async () => {
+    const allPostsData = getSortedPostsData();
+
+    return {
+        props: {
+        allPostsData
+        }
+    }
 }
